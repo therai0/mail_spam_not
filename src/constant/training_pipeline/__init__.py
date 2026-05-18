@@ -25,5 +25,5 @@ Constant varaible for data transformation
 """
 DATA_TRANSFORMATION_DIR_NAME = "data_transformation"
 DATA_TRANSFORMATION_TRASFORMED_DIR_NAME = "transformed"
-TRANSFORMED_TRAIN_DF = "transformed_train.csv"
-TRANSFORMED_TEST_DF = "transformed_test.csv"
+TRANSFORMED_TRAIN_DF = "transformed_train.npy"
+TRANSFORMED_TEST_DF = "transformed_test.npy"

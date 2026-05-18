@@ -2,7 +2,6 @@ import os
 import sys 
 from datetime import datetime
 
-from main import traning_config
 from src.exception.exception import CustomeException
 from src.constant import training_pipeline
 
@@ -29,8 +28,8 @@ class DataTransformationConfig:
     def __init__(self,traing_config:TraningConfig):
         try:
             self.transformed_dir = os.path.join(traing_config.artifacts_dir,training_pipeline.DATA_TRANSFORMATION_DIR_NAME)
-            self.transformed_train_df = os.path.join(self.transformed_dir,training_pipeline.DATA_TRANSFORMATION_TRASFORMED_DIR_NAME,training_pipeline.TRANSFORMED_TRAIN_DF)
-            self.transformed_test_df = os.path.join(self.transformed_dir,training_pipeline.DATA_TRANSFORMATION_TRASFORMED_DIR_NAME,training_pipeline.TRANSFORMED_TEST_DF)
-            self.target_column = training_pipeline.target_columns
+            self.transformed_train_array_path = os.path.join(self.transformed_dir,training_pipeline.DATA_TRANSFORMATION_TRASFORMED_DIR_NAME,training_pipeline.TRANSFORMED_TRAIN_DF)
+            self.transformed_test_array_path = os.path.join(self.transformed_dir,training_pipeline.DATA_TRANSFORMATION_TRASFORMED_DIR_NAME,training_pipeline.TRANSFORMED_TEST_DF)
+            self.target_column = training_pipeline.target_column
         except Exception as e:
             raise CustomeException(e,sys)
