@@ -1,10 +1,10 @@
 import sys
 
-
 from src.logging.logger import logging
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
-from src.entity.config_entity import DataIngestionConfig,TraningConfig,DataTransformationConfig
+from src.entity.config_entity import DataIngestionConfig,TraningConfig,DataTransformationConfig,ModelTrainerConfig
+from src.components.model_training import ModelTraning
 
 
 data_file_path = "./data/ham_spam.csv"
@@ -17,8 +17,13 @@ if __name__ == "__main__":
     data_ingestion_artifacts = data_ingestion.init_data_ingestion(data_file_path)
     logging.info("Data Ingestion completed")
     
-    logging.info("Data transformation and cleaning started")
+    logging.info("Text cleaing and vectorization started")
     data_transformation_config =DataTransformationConfig(traing_config=traning_config)
     data_transformation = DataTransformation(data_ingestion_artifacts=data_ingestion_artifacts,data_transformation_config=data_transformation_config)
     data_transformation_artifacts = data_transformation.init_data_transformation()
-    logging.info("Data transformation completed")
+    logging.info("Text cleaing and vectorization completed")
+
+    logging.info("Model Traning started")
+    model_trainer_config = ModelTrainerConfig()
+    model_training = ModelTraning(model_trainer_config=model_trainer_config,data_transformer_artifacts=data_transformation_artifacts)
+    model_training.init_model_training()

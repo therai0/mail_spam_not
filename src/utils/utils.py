@@ -1,4 +1,5 @@
 import os 
+import pickle
 import sys 
 import numpy as np 
 from gensim.models import Word2Vec
@@ -36,5 +37,23 @@ def load_numy_array_data(file_path:str)->np.array:
     try:
         with open(file_path,'rb') as file_obj:
             return np.load(file_obj)
+    except Exception as e:
+        raise CustomeException(e,sys)
+
+
+def save_ml_model(path:str,model)->None:
+    try:
+        path_dir = os.path.dirname(path)
+        os.makedirs(path_dir)
+        with open(path,'rb') as file:
+            pickle.dump(file,model)
+    except Exception as e:
+        raise CustomeException(e,sys)
+
+def load_ml_model(path):
+    try:
+        if not os.path.exists(path):
+            raise Exception("File path doesn't exist")
+        pickle.load(path)
     except Exception as e:
         raise CustomeException(e,sys)
