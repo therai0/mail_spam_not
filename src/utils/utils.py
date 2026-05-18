@@ -1,28 +1,25 @@
 import os 
 import sys 
-import pickle
 import numpy as np 
+from gensim.models import Word2Vec
+
 from src.exception.exception import CustomeException
 
 
-def save_model(path:str,model)->None:
+
+def save_vector_model(path:str,model)->None:
     try:
-        dir_path = os.path.dirname(path)
-        os.makedirs(dir_path,exist_ok=True)
-        with open(path,'wb') as file:
-            pickle.dump(model,file)
+        path_dir = os.path.dirname(path)
+        os.makedirs(path_dir,exist_ok=True)
+        model.save(path)
     except Exception as e:
         raise CustomeException(e,sys)
 
-def load_model(path:str)->object:
+def load_vector_model(path:str):
     try:
-        if not os.path.exists(path):
-            raise Exception("Path does not exist")
-        with open(path,'rb') as file:
-            pickle.load(file)
+        return Word2Vec.load(path)
     except Exception as e:
         raise CustomeException(e,sys)
-
 
 def save_numpy_array_data(file_path:str,array:np.array):
     "Save numpy array to file path"

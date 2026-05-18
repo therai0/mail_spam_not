@@ -13,7 +13,7 @@ from nltk.stem import WordNetLemmatizer
 from src.exception.exception import CustomeException
 from src.entity.artifact_entity import DataIngestionArtifacts,DataTransformationArtifacts
 from src.entity.config_entity import DataTransformationConfig
-from src.utils.utils import save_numpy_array_data,save_model
+from src.utils.utils import save_numpy_array_data,save_vector_model
 
 
 class DataTransformation:
@@ -64,6 +64,8 @@ class DataTransformation:
         """
         try:
             model = self.get_word2vec_model(tokens)
+            save_vector_model(self.data_transformation_config.text_to_vector_model_path,model)
+            
             vector = []
             for sentence in tokens:
                 sentence_vector = []
@@ -86,33 +88,20 @@ class DataTransformation:
             train_data = pd.read_csv(self.data_ingestion_artifacts.train_file_path)
             test_data = pd.read_csv(self.data_ingestion_artifacts.test_file_path)
 
-            logging.info(train_data.shape)
-            logging.info(test_data.shape)
-
             y_train = train_data[self.data_transformation_config.target_column]
             y_test = test_data[self.data_transformation_config.target_column]
 
-            logging.info(len(y_train))
-            logging.info(len(y_test))
-
-
             X_train_token = self.text_preprocessing(train_data)
             X_test_token = self.text_preprocessing(test_data)
-         
 
             X_train_vec = self.text_to_vector(X_train_token)
             X_test_vec = self.text_to_vector(X_test_token)
 
-            logging.info(type(X_test_vec))
-
             train_data = np.c_[X_train_vec,np.array(y_train)]
             test_data = np.c_[X_test_vec,np.array(y_test)]
 
-            save_numpy_array_data(train_data)
-            save_numpy_array_data(test_data)
-            
-            self.save_array(self.data_transformation_config.transformed_train_array_path,train_data)
-            self.save_array(self.data_transformation_config.transformed_test_array_path,test_data)
+            save_numpy_array_data(self.data_transformation_config.transformed_train_array_path,train_data)
+            save_numpy_array_data(self.data_transformation_config.transformed_train_array_path,test_data)
 
             return DataTransformationArtifacts(
                 train_arr_file_path=self.data_transformation_config.transformed_train_array_path,

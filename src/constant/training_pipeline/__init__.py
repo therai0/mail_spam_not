@@ -9,7 +9,8 @@ train_file:str = "train.csv"
 test_file:str = "test.csv"
 target_column:str = "label"
 artifacts_dir = "Artifacts"
-
+vector_model = "vactor.model"
+final_model = "final_model"
 
 
 """
