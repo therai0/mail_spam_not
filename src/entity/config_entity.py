@@ -39,7 +39,7 @@ class DataTransformationConfig:
 class ModelTrainerConfig:
     def __init__(self):
         try:
-            self.ml_model_file_path = os.path.join(self,training_pipeline.final_model_dir_name,training_pipeline.ml_model,)
+            self.ml_model_file_path = os.path.join(training_pipeline.final_model_dir_name,training_pipeline.ml_model,)
         except Exception as e:
             raise CustomeException(e,sys)
             

@@ -3,7 +3,7 @@ import pickle
 import sys 
 import numpy as np 
 from gensim.models import Word2Vec
-
+import pickle
 from src.exception.exception import CustomeException
 
 
@@ -13,6 +13,16 @@ def save_vector_model(path:str,model)->None:
         path_dir = os.path.dirname(path)
         os.makedirs(path_dir,exist_ok=True)
         model.save(path)
+    except Exception as e:
+        raise CustomeException(e,sys)
+
+def save_vector_tfidf_model(path:str,model)->None:
+    try:
+        path_dir = os.path.dirname(path)
+        os.makedirs(path_dir,exist_ok=True)
+        with open(path,'wb') as file:
+            pickle.dump(model,file)
+        # model.save(path)
     except Exception as e:
         raise CustomeException(e,sys)
 
@@ -41,12 +51,12 @@ def load_numy_array_data(file_path:str)->np.array:
         raise CustomeException(e,sys)
 
 
-def save_ml_model(path:str,model)->None:
+def save_ml_model(path,model)->None:
     try:
         path_dir = os.path.dirname(path)
-        os.makedirs(path_dir)
-        with open(path,'rb') as file:
-            pickle.dump(file,model)
+        os.makedirs(path_dir,exist_ok=True)
+        with open(path,'wb') as file:
+            pickle.dump(model,file)
     except Exception as e:
         raise CustomeException(e,sys)
 
@@ -54,6 +64,7 @@ def load_ml_model(path):
     try:
         if not os.path.exists(path):
             raise Exception("File path doesn't exist")
-        pickle.load(path)
+        with open(path,'rb') as file:
+            return pickle.load(file)
     except Exception as e:
         raise CustomeException(e,sys)
