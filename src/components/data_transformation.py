@@ -1,4 +1,11 @@
 
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt_tab')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+
 import sys
 import re 
 import numpy as np 
@@ -11,6 +18,8 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
+
+
 
 from src.exception.exception import CustomeException
 from src.entity.artifact_entity import DataIngestionArtifacts,DataTransformationArtifacts
