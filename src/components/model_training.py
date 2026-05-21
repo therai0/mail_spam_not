@@ -1,10 +1,10 @@
 import sys
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC 
-from sklearn.naive_bayes import GaussianNB
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier,GradientBoostingClassifier
+# from sklearn.svm import SVC 
+# from sklearn.naive_bayes import GaussianNB
+# from sklearn.tree import DecisionTreeClassifier
+# from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier,GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 
@@ -53,7 +53,7 @@ class ModelTraning:
             score = accuracy_score(y_test, y_pred)
             print(score)
         
-            return model
+            return grid_search_model
         except Exception as e:
             raise CustomeException(e,sys)
 

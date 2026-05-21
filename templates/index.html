@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>Mail Spam Prediction ML Model</title>
 </head>
+
 <body>
-    <h1>Home</h1>
-    <a href="{{url_for('prediction')}}">prediction</a>
+
+    <div class="container">
+
+        <h1>Mail Prediction ML Model</h1>
+
+        <p>
+            This Machine Learning project is designed to predict whether an email is 
+            <span class="highlight">Spam</span> or 
+            <span class="highlight">Not Spam</span>.
+        </p>
+
+        <p>
+            The model is trained on a dataset containing more than 
+            <span class="highlight">33,000 email records</span>. 
+            Different machine learning algorithms were tested, and 
+            <span class="highlight">Logistic Regression</span> achieved the highest accuracy 
+            with an average performance of around 
+            <span class="highlight">98%</span>.
+        </p>
+
+        <p>
+            The system performs text preprocessing, feature extraction, and prediction 
+            to classify incoming emails efficiently.
+        </p>
+    </div>
+    <div>
+        <form action="{{url_for('index')}}" method="POST">
+            <textarea type="text" name="email" placeholder="Drop your email message">
+                </textarea>
+                <button>Predict</button>
+        </form>
+        <div>
+            {% if result %}
+                <p>{{result}}</p>
+            {% endif %}
+        </div>
+    </div>
+
 </body>
 </html>

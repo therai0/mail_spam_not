@@ -26,7 +26,7 @@ class DataIngestion:
     def init_data_ingestion(self,path:str):
         try:
             df = self.read_data(path)
-            train_df,test_df = train_test_split(df,test_size=self.data_ingestion_config.train_test_ratio)
+            train_df,test_df = train_test_split(df,test_size=self.data_ingestion_config.train_test_ratio,random_state=42)
 
             dir_path = os.path.dirname(self.data_ingestion_config.train_file_path)            
             os.makedirs(dir_path,exist_ok=True)

@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: #f7f6f3;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  color: #111;
+}
+
+.container {
+  max-width: 620px;
+  margin: 0 auto 2rem auto;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.3px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 0.85rem;
+}
+
+.highlight {
+  color: #111;
+  font-weight: 700;
+}
+
+/* Divider between info and form */
+.container {
+  border-bottom: 1px solid #e0ddd7;
+  padding-bottom: 2rem;
+}
+
+/* Form wrapper */
+body > div:last-of-type {
+  max-width: 620px;
+  margin: 2rem auto 0 auto;
+}
+
+textarea {
+  font-family: 'Times New Roman', Times, serif;
+  width: 100%;
+  height: 180px;
+  padding: 14px 16px;
+  font-size: 15px;
+  line-height: 1.65;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #111;
+  resize: vertical;
+  outline: none;
+  display: block;
+  transition: border-color 0.15s;
+}
+
+textarea::placeholder {
+  color: #bbb;
+}
+
+textarea:focus {
+  border-color: #888;
+}
+
+button {
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 10px;
+  width: 100%;
+  padding: 11px;
+  font-size: 15px;
+  font-weight: 700;
+  background: #111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: opacity 0.15s;
+}
+
+button:hover {
+  opacity: 0.82;
+}
+
+/* Result box */
+body > div:last-of-type > div {
+  margin-top: 1.25rem;
+  padding: 13px 16px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+body > div:last-of-type > div p {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}

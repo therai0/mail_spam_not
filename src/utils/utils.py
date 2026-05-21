@@ -22,13 +22,13 @@ def save_vector_tfidf_model(path:str,model)->None:
         os.makedirs(path_dir,exist_ok=True)
         with open(path,'wb') as file:
             pickle.dump(model,file)
-        # model.save(path)
     except Exception as e:
         raise CustomeException(e,sys)
 
-def load_vector_model(path:str):
+def load_vector_model(path):
     try:
-        return Word2Vec.load(path)
+        with open(path,'rb') as file:
+            return pickle.load(file)
     except Exception as e:
         raise CustomeException(e,sys)
 

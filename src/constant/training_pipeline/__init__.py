@@ -9,7 +9,7 @@ train_file:str = "train.csv"
 test_file:str = "test.csv"
 target_column:str = "label"
 artifacts_dir = "Artifacts"
-vector_model = "vactor.model"
+vector_model = "vector.pkl"
 final_model_dir_name = "final_model"
 ml_model = "ml_model.pkl"
 

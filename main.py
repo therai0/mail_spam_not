@@ -30,3 +30,5 @@ def train_model():
     logging.info("Model traning finished")
 
 
+if __name__ == "__main__":
+    train_model()
