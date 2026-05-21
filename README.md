@@ -15,9 +15,9 @@ This repository contains tools and notebooks for building and evaluating spam de
 ## Features
 
 - Email spam classification and detection
-- Data preprocessing and feature engineering
+- Data preprocessing
 - Machine learning model development and evaluation
-- Interactive analysis and visualization notebooks
+
 
 ## Getting Started
 
