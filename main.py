@@ -7,7 +7,7 @@ from src.entity.config_entity import DataIngestionConfig,TraningConfig,DataTrans
 from src.components.model_training import ModelTraning
 
 
-data_file_path = "./data/email_origin.csv"
+data_file_path = "./data/combined_data.csv"
 
 def train_model():
     logging.info("Data Ingestion started")
@@ -16,12 +16,16 @@ def train_model():
     data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
     data_ingestion_artifacts = data_ingestion.init_data_ingestion(data_file_path)
     logging.info("Data Ingestion completed")
+
     
     logging.info("Text cleaing and vectorization started")
     data_transformation_config =DataTransformationConfig(traing_config=traning_config)
     data_transformation = DataTransformation(data_ingestion_artifacts=data_ingestion_artifacts,data_transformation_config=data_transformation_config)
     data_transformer_artifacts = data_transformation.init_data_transformation()
     logging.info("Text cleaing and vectorization completed")
+
+    print(data_ingestion_artifacts.train_file_path)
+
 
     logging.info("Model Traning started")
     model_trainer_config = ModelTrainerConfig()

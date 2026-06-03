@@ -40,24 +40,19 @@ class DataTransformation:
             stp_words = set(stopwords.words("english"))  # set = O(1) lookup
 
             tokens = []
-            for x in data["origin"]:
-                # 1. Strip HTML tags
+            for x in data[self.data_transformation_config.text_column]:
+               
                 x = BeautifulSoup(x, "html.parser").get_text()
 
-                # 2. Replace URLs and emails with placeholder tokens
                 x = re.sub(r'http\S+|www\S+', ' urltoken ', x)
                 x = re.sub(r'\S+@\S+', ' emailtoken ', x)
 
-                # 3. Lowercase early
                 x = x.lower()
 
-                # 4. Remove non-alphanumeric (now safe to do)
                 x = re.sub(r'[^a-z0-9\s]', '', x)
 
-                # 5. Tokenize
                 token = word_tokenize(x)
 
-                # 6. Filter stopwords + lemmatize
                 clean_token = [
                     lemmatizer.lemmatize(w)
                     for w in token
@@ -119,8 +114,8 @@ class DataTransformation:
             X_train_vec,X_test_vec = self.text_to_vector_tfidf(X_train_token,X_test_token)
 
             
-            train_data = np.c_[X_train_vec,np.array(y_train)]
-            test_data = np.c_[X_test_vec,np.array(y_test)]
+            train_data = np.c_[X_train_vec, np.asarray(y_train, dtype=np.float64)]
+            test_data = np.c_[X_test_vec, np.asarray(y_test, dtype=np.float64)]
 
             save_numpy_array_data(self.data_transformation_config.transformed_train_array_path,train_data)
             save_numpy_array_data(self.data_transformation_config.transformed_test_array_path,test_data)

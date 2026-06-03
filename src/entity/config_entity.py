@@ -31,6 +31,7 @@ class DataTransformationConfig:
             self.transformed_train_array_path = os.path.join(self.transformed_dir,training_pipeline.DATA_TRANSFORMATION_TRASFORMED_DIR_NAME,training_pipeline.TRANSFORMED_TRAIN_DF)
             self.transformed_test_array_path = os.path.join(self.transformed_dir,training_pipeline.DATA_TRANSFORMATION_TRASFORMED_DIR_NAME,training_pipeline.TRANSFORMED_TEST_DF)
             self.text_to_vector_model_path = os.path.join(training_pipeline.final_model_dir_name,training_pipeline.vector_model)
+            self.text_column = training_pipeline.text_column
             self.target_column = training_pipeline.target_column
         except Exception as e:
             raise CustomeException(e,sys)
